@@ -2,14 +2,14 @@ function(add_samp_plugin name)
   add_library(${name} MODULE ${ARGN})
 
   set_target_properties(${name} PROPERTIES PREFIX "")
-  target_compile_features(${plugin_name} PRIVATE cxx_std_20)
+  target_compile_features(${name} PRIVATE cxx_std_20)
 
   if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    target_compile_definitions(${plugin_name} PRIVATE _GLIBCXX_USE_CXX11_ABI=0)
+    target_compile_definitions(${name} PRIVATE _GLIBCXX_USE_CXX11_ABI=0)
 
-    set_property(TARGET ${plugin_name} PROPERTY POSITION_INDEPENDENT_CODE Off)
-    set_property(TARGET ${plugin_name} APPEND_STRING PROPERTY COMPILE_FLAGS "-m32 -O3 -Wall -Wextra")
-    set_property(TARGET ${plugin_name} APPEND_STRING PROPERTY LINK_FLAGS "-m32 -O3 -static-libgcc -static-libstdc++")
+    set_property(TARGET ${name} PROPERTY POSITION_INDEPENDENT_CODE Off)
+    set_property(TARGET ${name} APPEND_STRING PROPERTY COMPILE_FLAGS "-m32 -O3 -Wall -Wextra")
+    set_property(TARGET ${name} APPEND_STRING PROPERTY LINK_FLAGS "-m32 -O3 -static-libgcc -static-libstdc++")
   endif()
 
   if(CMAKE_COMPILER_IS_GNUCXX)
