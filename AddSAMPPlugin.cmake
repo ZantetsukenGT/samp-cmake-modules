@@ -7,7 +7,7 @@ function(add_samp_plugin name)
   if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     target_compile_definitions(${name} PRIVATE _GLIBCXX_USE_CXX11_ABI=0)
 
-    set_property(TARGET ${name} PROPERTY POSITION_INDEPENDENT_CODE Off)
+    set_property(TARGET ${name} PROPERTY POSITION_INDEPENDENT_CODE ON)
     set_property(TARGET ${name} APPEND_STRING PROPERTY COMPILE_FLAGS "-m32 -O3 -Wall -Wextra")
     set_property(TARGET ${name} APPEND_STRING PROPERTY LINK_FLAGS "-m32 -O3 -static-libgcc -static-libstdc++")
   endif()
